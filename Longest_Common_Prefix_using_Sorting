@@ -1,0 +1,30 @@
+import java.util.Arrays;
+
+class Main {
+    public static void main(String[] args) {
+        String[] s = {"jay", "jaydeep", "jaydf", "jayjj"};
+        StringBuilder str = lgs(s);
+        System.out.print(str);
+    }
+
+    public static StringBuilder lgs(String[] arr) {
+        if (arr == null || arr.length == 0) {
+            return new StringBuilder(""); // Handle empty array case
+        }
+
+        Arrays.sort(arr);
+        char[] ch1 = arr[0].toCharArray();
+        char[] ch2 = arr[arr.length - 1].toCharArray();
+        StringBuilder s = new StringBuilder();
+        
+        for (int i = 0; i < Math.min(ch1.length, ch2.length); i++) { // Fix: prevent out-of-bounds error
+            if (ch1[i] == ch2[i]) {
+                s.append(ch1[i]);
+            } else {
+                break; // Fix: stop as soon as characters differ
+            }
+        }
+        
+        return s;
+    }
+}
